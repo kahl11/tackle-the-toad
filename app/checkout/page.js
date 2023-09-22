@@ -19,7 +19,7 @@ export default function Checkout() {
             const res = await fetch("/api/create-payment-intent", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+                body: JSON.stringify({ items: [{ id: "50km" }] }),
             })
             const data = await res.json();
             setClientSecret(data.clientSecret);
