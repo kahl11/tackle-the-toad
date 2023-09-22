@@ -17,7 +17,7 @@ const ThankYou = () => {
       }}
     >
       <Typography fontSize={'1.4rem'} fontWeight={'bold'}>Thank You!</Typography>
-      <img src={"/TackleTheToadLogo.png"} width="300" />
+      <img src={"/tackleTheToadLogo.png"} width="300" />
       <Typography fontSize={'1.4rem'} fontWeight={'bold'}>You&apos;re Registered</Typography>
       <Button variant="contained" color="secondary" size="large"
       sx={{mt: '2rem'}}
