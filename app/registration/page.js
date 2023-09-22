@@ -43,7 +43,7 @@ const Registration = () => {
       }}
     >
       <FormControl>
-        <Grid container spacing={4} sx={{ px: "4rem", py: "2rem" }}>
+        <Grid container spacing={4} sx={{ px: {sm: "1rem", md: "4rem"}, py: "2rem" }}>
           <Grid container item md={6} xs={12} direction="column">
             <Typography variant="h6" sx={{ paddingBottom: "1rem" }}>
               Registration
