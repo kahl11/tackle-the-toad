@@ -14,13 +14,16 @@ const stripePromise = loadStripe("pk_test_51H7oYJAGMEbbtoZl130sEQEc3TiJvSYocAiM1
 export default function Checkout() {
     const [clientSecret, setClientSecret] = useState("");
     const fetchPaymentIntent = async () => {
-        const res = await fetch("/api/create-payment-intent", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-        })
-        const data = await res.json();
-        setClientSecret(data.clientSecret);
+        if (typeof window !== "undefined") {
+
+            const res = await fetch("/api/create-payment-intent", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+            })
+            const data = await res.json();
+            setClientSecret(data.clientSecret);
+        }
     };
 
     useEffect(() => {
@@ -37,7 +40,7 @@ export default function Checkout() {
 
     return (
         <>
-            {clientSecret && (
+            {clientSecret && (typeof window !== "undefined") (
                 <Elements options={options} stripe={stripePromise}>
                     <CheckoutForm />
                 </Elements>

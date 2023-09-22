@@ -58,6 +58,7 @@ export default function CheckoutForm() {
     }, [stripe]);
 
     const handleSubmit = async (e) => {
+        if (typeof window !== "undefined") {
         e.preventDefault();
 
         if (!stripe || !elements) {
@@ -88,11 +89,12 @@ export default function CheckoutForm() {
             } else {
                 setMessage("An unexpected error occurred.");
             }
-        }else{
+        } else {
             setIsLoading(false);
             router.push('/thank-you')
         }
         setIsLoading(false);
+    }
     };
 
     const paymentElementOptions = {

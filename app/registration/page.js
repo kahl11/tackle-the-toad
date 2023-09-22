@@ -26,18 +26,20 @@ const Registration = () => {
   return (
     <form
       onSubmit={(event) => {
-        event.preventDefault();
-        const email = event.target.querySelector("#email").value
-        Cookies.set('email', email)
-        globalDataContext.setData(
-          {
-            ...globalDataContext.data,
-            email,
-            firstName: event.target.querySelector("#firstName").value,
-            lastName: event.target.querySelector("#lastName").value,
-          }
-        )
-        handleRegistration(event.target, birthday, router);
+        if (typeof window !== "undefined") {
+          event.preventDefault();
+          const email = event.target.querySelector("#email").value
+          Cookies.set('email', email)
+          globalDataContext.setData(
+            {
+              ...globalDataContext.data,
+              email,
+              firstName: event.target.querySelector("#firstName").value,
+              lastName: event.target.querySelector("#lastName").value,
+            }
+          )
+          handleRegistration(event.target, birthday, router);
+        }
       }}
     >
       <FormControl>
