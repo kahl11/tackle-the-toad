@@ -1,7 +1,9 @@
+import { Box } from '@mui/material'
 import './globals.css'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import NavBar from '@/src/components/NavBar'
+import Footer from '@/src/components/Footer'
+import ThemeWrapper, { theme } from '../src/style/theme'
+import GlobalContextProvider from '@/src/components/GlobalContextProvider'
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +13,30 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <Box>
+          <ThemeWrapper>
+            <GlobalContextProvider>
+              <NavBar />
+              <Box sx={{
+                minHeight: '95vh',
+                backgroundColor: "#EFEEE5"
+              }}>
+                {children}
+              </Box>
+              <Footer />
+            </GlobalContextProvider>
+          </ThemeWrapper>
+        </Box>
+      </body>
     </html>
   )
 }
