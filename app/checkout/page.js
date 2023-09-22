@@ -40,7 +40,7 @@ export default function Checkout() {
 
     return (
         <>
-            {clientSecret && (typeof window !== "undefined") (
+            {clientSecret && (
                 <Elements options={options} stripe={stripePromise}>
                     <CheckoutForm />
                 </Elements>
