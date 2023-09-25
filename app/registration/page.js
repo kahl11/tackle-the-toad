@@ -129,7 +129,7 @@ const Registration = () => {
               Contact
             </Typography>
             <TextField id="email" label="Email" variant="filled" />
-
+            <TextField id="verifyEmail" label="Verify Email" variant="filled" />
             <TextField id="phone" label="Phone Number" variant="filled" />
 
 

@@ -1,19 +1,41 @@
 import { db } from "../constants/firebase"
-import { doc, setDoc } from "firebase/firestore"; 
-function validateEmail(email) {
+import { doc, setDoc } from "firebase/firestore";
+
+
+const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
 
-
+const insertErrorText = (target, text) => {
+    target.scrollIntoView();
+    target.parentElement.insertAdjacentHTML(
+        "afterend",
+        `<span is-error-node style="color:red; display: block; font-family: sans-serif">${text}</span>`,
+      );
+}
 
 
 export const handleRegistration = async (target, birthday, router) => {
+    let nodesToDelete = document.querySelectorAll('[is-error-node]');
+    nodesToDelete.forEach((ele) => {
+        ele.remove();
+    })
     for (let i = 0; i < target.length; i++) {
         target[i].style.color = 'rgba(0, 0, 0, 0.87)';
     }
     if (!birthday) {
         return;
+    }
+    if(Number(birthday.$y) > 2006){
+        const birthdayInput = target.querySelector("#birthdate");
+        birthdayInput.style.color = 'red';
+        birthdayInput.scrollIntoView();
+        birthdayInput.parentElement.parentElement.insertAdjacentHTML(
+            "afterend",
+            `<span is-error-node style="color:red; display: block; font-family: sans-serif">Must be over 18, or turning 18 in 2024</span>`,
+          );
+          return;
     }
     let gender = 'm';
     if (target.querySelector("#male-select").checked) {
@@ -26,6 +48,13 @@ export const handleRegistration = async (target, birthday, router) => {
     const email = target.querySelector("#email").value;
     if (!validateEmail(email)) {
         target.querySelector("#email").style.color = 'red';
+        insertErrorText(target.querySelector("#email"), "invalid email");
+        return;
+    }
+    if (email !== target.querySelector("#verifyEmail").value) {
+        target.querySelector("#verifyEmail").style.color = 'red';
+        insertErrorText(target.querySelector("#verifyEmail"), "emails must match");
+        return;
     }
 
     const payload = {
