@@ -21,7 +21,7 @@ const Home = () => {
           backgroundImage: `url('/background.webp')`,
           backgroundPositionY: backgroundBreak? "-5rem" : "0rem",
           backgroundPositionX: breakpoint? '0rem' : '-14rem',
-          minHeight: "90vh",
+          minHeight: "90lvh",
           backgroundSize: "cover",
         }}
       >
