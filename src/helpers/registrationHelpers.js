@@ -7,6 +7,12 @@ const validateEmail = (email) => {
     return regex.test(email);
 }
 
+const validatePhone = (number) => {
+    console.log(number);
+    const regex = /^[(]*[0-9]{3}[)]*[ ,-]*[0-9]{3}[ ,-]*[0-9]{4}[\n|\s]*$/;
+    return regex.test(number);
+}
+
 const insertErrorText = (target, text) => {
     target.scrollIntoView();
     target.parentElement.insertAdjacentHTML(
@@ -18,6 +24,7 @@ const insertErrorText = (target, text) => {
 
 export const handleRegistration = async (target, birthday, router) => {
     let nodesToDelete = document.querySelectorAll('[is-error-node]');
+    let validForm = true;
     nodesToDelete.forEach((ele) => {
         ele.remove();
     })
@@ -25,7 +32,7 @@ export const handleRegistration = async (target, birthday, router) => {
         target[i].style.color = 'rgba(0, 0, 0, 0.87)';
     }
     if (!birthday) {
-        return;
+        validForm = false;
     }
     if(Number(birthday.$y) > 2006){
         const birthdayInput = target.querySelector("#birthdate");
@@ -35,7 +42,7 @@ export const handleRegistration = async (target, birthday, router) => {
             "afterend",
             `<span is-error-node style="color:red; display: block; font-family: sans-serif">Must be over 18, or turning 18 in 2024</span>`,
           );
-          return;
+          validForm = false;
     }
     let gender = 'm';
     if (target.querySelector("#male-select").checked) {
@@ -49,11 +56,27 @@ export const handleRegistration = async (target, birthday, router) => {
     if (!validateEmail(email)) {
         target.querySelector("#email").style.color = 'red';
         insertErrorText(target.querySelector("#email"), "invalid email");
-        return;
+        validForm = false;
     }
     if (email !== target.querySelector("#verifyEmail").value) {
         target.querySelector("#verifyEmail").style.color = 'red';
         insertErrorText(target.querySelector("#verifyEmail"), "emails must match");
+        validForm = false;
+    }
+    const phone = target.querySelector("#phone").value;
+    if(!validatePhone(phone)){
+        target.querySelector("#phone").style.color = 'red';
+        insertErrorText(target.querySelector("#phone"), "invalid phone number");
+        validForm = false;
+    }
+    const emergencyPhoneValid = validatePhone(target.querySelector("#emergencyPhone").value);
+    if(!emergencyPhoneValid){
+        target.querySelector("#emergencyPhone").style.color = 'red';
+        insertErrorText(target.querySelector("#emergencyPhone"), "invalid phone number");
+        validForm = false;
+    }
+
+    if(!validForm){
         return;
     }
 

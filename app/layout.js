@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+       <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@800&family=Roboto:wght@100&display=swap" rel="stylesheet"></link> 
       </head>
       <body>
         <Box>
