@@ -1,5 +1,6 @@
 "use client"
 import { Box, Button, Typography, useMediaQuery, useTheme } from "@mui/material";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const Home = () => {
@@ -7,9 +8,9 @@ const Home = () => {
   const backgroundBreak = useMediaQuery('(min-width:1280px)');
 
   const router = useRouter();
-    const onClickRegister = () => {
-        router.push("/registration");
-    };
+  const onClickRegister = () => {
+    router.push("/registration");
+  };
   return (
     <>
       <Box
@@ -19,31 +20,38 @@ const Home = () => {
           justifyContent: "center",
           alignItems: "center",
           backgroundImage: `url('/background.webp')`,
-          backgroundPositionY: backgroundBreak? "-5rem" : "0rem",
-          backgroundPositionX: breakpoint? '0rem' : '-14rem',
+          backgroundPositionY: backgroundBreak ? "-5rem" : "0rem",
+          backgroundPositionX: breakpoint ? '0rem' : '-14rem',
           minHeight: "90lvh",
           backgroundSize: "cover",
         }}
       >
         <Typography
           variant="h1"
-          fontSize={breakpoint? "7rem" : "4rem"}
+          fontSize={breakpoint ? "7rem" : "4rem"}
           fontFamily="Gabarito"
           textTransform={"uppercase"}
           fontWeight={"800"}
           color={"white"}
           align="center"
-          sx={{ textShadow: "1px 1px 2px black", mb: '0.5rem' }}
+          sx={{ textShadow: "2px 2px 8px black", mb: '0.5rem' }}
         >
           Tackle The Toad
         </Typography>
         <br />
-        <Button variant="contained" size="large" sx={{background: 'linear-gradient(141deg, rgba(38,159,186,1) 0%, rgba(9,175,176,1) 100%)', color: 'white'}}
-        onClick={onClickRegister}
+        <Button
+          variant="contained" size="large"
+          sx={{
+            background: 'linear-gradient(141deg, rgba(38,159,186,1) 0%, rgba(9,175,176,1) 100%)',
+            color: 'white',
+            boxShadow: '2px 2px 14px rgba(0,0,0,0.8)',
+            '&:hover': { boxShadow: '1px 1px 12px black' }
+          }}
+          onClick={onClickRegister}
         >
           <Typography
             fontSize={"1.2rem"}
-            sx={{px: '1rem', py: '0.1rem'}}
+            sx={{ px: '1rem', py: '0.1rem' }}
             fontWeight={"300"}
             fontFamily={"Open Sans"}
             color="white"
@@ -52,28 +60,33 @@ const Home = () => {
           </Typography>
         </Button>
       </Box>
-      <Box sx={{background: 'rgb(14,80,79)',
-                background: 'linear-gradient(50deg, rgba(64,171,169,1) 0%, rgba(7,121,111,1) 100%)', py: '2rem', px: {md: '8rem', sm: '1rem' }}}>
+      <Box sx={{
+        background: 'rgb(14,80,79)',
+        background: 'linear-gradient(50deg, rgba(64,171,169,1) 0%, rgba(7,121,111,1) 100%)', py: '1rem', px: { md: '8rem', sm: '1rem' }
+      }}>
         <Typography
-        align="center"
-        fontSize={'1.1rem'}
-        fontFamily={"Roboto"}
-        padding="1rem"
-        color="white"
-        letterSpacing={'0.5rem'}
-        fontWeight="100"
+          align="center"
+          fontSize={'1.1rem'}
+          fontFamily={"Roboto"}
+          padding="1rem"
+          color="white"
+          letterSpacing={'0.5rem'}
+          fontWeight="100"
         >
-            50km &nbsp;-&nbsp; 2500m &nbsp;-&nbsp; June 29 &nbsp;-&nbsp; 2024
+          50km &nbsp;-&nbsp; 2500m &nbsp;-&nbsp; June 29 &nbsp;-&nbsp; 2024
         </Typography>
       </Box>
-      <Box sx={{backgroundColor: "#EFEEE5", py: '2rem', px: {md: '8rem', sm: '1rem' }}}>
+      <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column', backgroundColor: "#EFEEE5", py: '2rem', px: { md: '8rem', sm: '1rem' } }}>
+        <Box sx={{py: '1rem'}}>
+          <Image src={"/toadLogo.webp"} width={"300"} height={"180"} alt='logo' />
+        </Box>
         <Typography
-        padding={'1rem'}
-        align="center"
-        fontSize={'1.1rem'}
+          padding={'1rem'}
+          align="center"
+          fontSize={'1.1rem'}
         >
-            Embark on the adventure of traversing this stunning 50-kilometer course, located in the picturesque Toad Mountain just outside the town of Nelson.
-            Mark your calendars. Tackle the Toad is making its return on the 29th of June, 2024.
+          Embark on the adventure of traversing this stunning 50-kilometer course, located in the picturesque Toad Mountain just outside the town of Nelson.
+          Mark your calendars. Tackle the Toad is making its return on the 29th of June, 2024.
         </Typography>
       </Box>
     </>

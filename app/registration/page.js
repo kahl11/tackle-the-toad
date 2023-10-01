@@ -43,7 +43,7 @@ const Registration = () => {
       }}
     >
       <FormControl>
-        <Grid container spacing={4} sx={{ px: {sm: "1rem", md: "4rem"}, py: "2rem" }}>
+        <Grid container spacing={4} sx={{ px: { sm: "1rem", md: "4rem" }, py: "2rem" }}>
           <Grid container item md={6} xs={12} direction="column">
             <Typography variant="h6" sx={{ paddingBottom: "1rem" }}>
               Registration
@@ -173,11 +173,14 @@ const Registration = () => {
           sx={{ width: "100%", justifyContent: "center", alignItems: "center" }}
         >
           <Button
-            type="submit"
-            variant="contained"
-            color="secondary"
-            size="large"
-            sx={{ width: "20rem", mb: '1rem' }}
+            variant="contained" size="large"
+            sx={{
+              background: 'linear-gradient(141deg, rgba(38,159,186,1) 0%, rgba(9,175,176,1) 100%)',
+              color: 'white',
+              mb: '2rem',
+              boxShadow: '1px 1px 12px black',
+              '&:hover': { boxShadow: '1px 1px 12px black' }
+            }}
           >
             <Typography
               fontSize={"1.2rem"}
