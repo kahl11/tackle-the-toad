@@ -259,12 +259,13 @@ const Home = () => {
         minHeight: '10rem',
         display: "flex",
         background: 'rgb(4,30,148)',
-        background: 'linear-gradient(30deg, rgba(4,88,148,1) 0%, rgba(8,142,141,1) 100%)',
+        background: 'linear-gradient(110deg,  rgba(8,142,141,1) 0%, rgba(4,88,148,1) 100%)',
 
       }}>
         <Typography
         fontSize="1.5rem"
         color="#e8e8e8"
+        sx={{textShadow: '1px 1px rgba(0,0,0,0.2)'}}
         > More info coming soon </Typography>
       </Box>
     </>
