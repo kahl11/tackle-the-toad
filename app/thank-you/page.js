@@ -1,5 +1,6 @@
 "use client"
 import { Box, Button, Typography } from "@mui/material";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const ThankYou = () => {
@@ -17,7 +18,7 @@ const ThankYou = () => {
       }}
     >
       <Typography fontSize={'1.4rem'} fontWeight={'bold'}>Thank You!</Typography>
-      <img src={"/tackleTheToadLogo.png"} width="300" />
+      <Image src={"/toadLogo.webp"} width="540" height="299" alt="logo" />
       <Typography fontSize={'1.4rem'} fontWeight={'bold'}>You&apos;re Registered</Typography>
       <Button variant="contained" color="secondary" size="large"
       sx={{mt: '2rem'}}

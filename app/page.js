@@ -122,7 +122,7 @@ const Home = () => {
           of Nelson. Mark your calendars. Tackle the Toad is making its return
           on the 29th of June, 2024.
         </Typography>
-        <Box sx={{ position: "relative" }}>
+        <Box sx={{ position: "relative", padding: breakpoint? '0rem' : '1rem' }}>
           <Box
             sx={{
               position: "relative",

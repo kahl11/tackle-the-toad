@@ -2,7 +2,6 @@ const stripe = require("stripe")('sk_test_51H7oYJAGMEbbtoZlhsJOnJCnqRK8pphCqhJG0
 
 export default async function handler(req, res) {
   const { items } = req.body;
-  console.log("Request:", req.body)
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({

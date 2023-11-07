@@ -8,7 +8,6 @@ const validateEmail = (email) => {
 }
 
 const validatePhone = (number) => {
-    console.log(number);
     const regex = /^[(]*[0-9]{3}[)]*[ ,-]*[0-9]{3}[ ,-]*[0-9]{4}[\n|\s]*$/;
     return regex.test(number);
 }
@@ -22,7 +21,7 @@ const insertErrorText = (target, text) => {
 }
 
 
-export const handleRegistration = async (target, birthday, router) => {
+export const handleRegistration = async (target, birthday, shirtSize, router) => {
     let nodesToDelete = document.querySelectorAll('[is-error-node]');
     let validForm = true;
     nodesToDelete.forEach((ele) => {
@@ -83,6 +82,7 @@ export const handleRegistration = async (target, birthday, router) => {
     const payload = {
         "address": target.querySelector("#address").value,
         "birthdate": `${birthday.$D}/${birthday.$M}/${birthday.$y}`,
+        "shirtSize": shirtSize,
         "contactPhone": target.querySelector("#emergencyPhone").value,
         "country": target.querySelector("#country").value,
         "email": target.querySelector("#email").value,
@@ -99,6 +99,56 @@ export const handleRegistration = async (target, birthday, router) => {
     try {
         await setDoc(doc(db, "registration", email), payload);
         router.push('/checkout');
+    } catch (e) {
+        console.error("Error adding document: ", e);
+        return;
+    }
+}
+
+export const handleVolunteerRegistration = async (target, birthday, shirtSize, router) => {
+    let nodesToDelete = document.querySelectorAll('[is-error-node]');
+    let validForm = true;
+    nodesToDelete.forEach((ele) => {
+        ele.remove();
+    })
+    for (let i = 0; i < target.length; i++) {
+        target[i].style.color = 'rgba(0, 0, 0, 0.87)';
+    }
+    if (!birthday) {
+        validForm = false;
+    }
+    const email = target.querySelector("#email").value;
+    if (!validateEmail(email)) {
+        target.querySelector("#email").style.color = 'red';
+        insertErrorText(target.querySelector("#email"), "invalid email");
+        validForm = false;
+    }
+    if (email !== target.querySelector("#verifyEmail").value) {
+        target.querySelector("#verifyEmail").style.color = 'red';
+        insertErrorText(target.querySelector("#verifyEmail"), "emails must match");
+        validForm = false;
+    }
+    const phone = target.querySelector("#phone").value;
+    if(!validatePhone(phone)){
+        target.querySelector("#phone").style.color = 'red';
+        insertErrorText(target.querySelector("#phone"), "invalid phone number");
+        validForm = false;
+    }
+    if(!validForm){
+        return;
+    }
+
+    const payload = {
+        "birthdate": `${birthday.$D}/${birthday.$M}/${birthday.$y}`,
+        "shirtSize": shirtSize,
+        "email": target.querySelector("#email").value,
+        "firstName": target.querySelector("#firstName").value,
+        "lastName": target.querySelector("#lastName").value,
+        "phone": target.querySelector("#phone").value,
+    }
+    try {
+        await setDoc(doc(db, "volunteers", email), payload);
+        router.push('/thank-you');
     } catch (e) {
         console.error("Error adding document: ", e);
         return;

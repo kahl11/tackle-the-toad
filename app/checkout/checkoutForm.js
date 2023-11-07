@@ -75,7 +75,6 @@ export default function CheckoutForm() {
         })
         try {
             updateDoc(doc(db, "registration", email), { paid: true });
-            console.log('updated payment status');
         } catch (e) {
             console.log(e);
             setMessage(
