@@ -139,7 +139,6 @@ export const handleVolunteerRegistration = async (target, birthday, shirtSize, r
     }
 
     const payload = {
-        "birthdate": `${birthday.$D}/${birthday.$M}/${birthday.$y}`,
         "shirtSize": shirtSize,
         "email": target.querySelector("#email").value,
         "firstName": target.querySelector("#firstName").value,

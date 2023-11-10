@@ -81,21 +81,6 @@ const VolunteerRegistration = () => {
             label="Last Name"
             variant="filled"
           />
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              slotProps={{
-                textField: {
-                  id: "birthdate",
-                  required: true,
-                },
-              }}
-              sx={{ backgroundColor: "rgba(0, 0, 0, 0.06)" }}
-              label="Birthday"
-              value={birthday}
-              onChange={(newValue) => setBirthday(newValue)}
-            />
-          </LocalizationProvider>
           <Typography sx={{ paddingBottom: "0.5rem" }}>Shirt Size</Typography>
           <Select
             id="shirt-size"

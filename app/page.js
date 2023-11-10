@@ -1,8 +1,12 @@
 "use client";
+import { useState } from "react";
+import CustomTabPanel from "@/src/components/customTabPanel";
 import {
   Box,
   Button,
   Card,
+  Tab,
+  Tabs,
   Typography,
   useMediaQuery,
   useTheme,
@@ -16,6 +20,14 @@ const SPONSOR_LOGO_SIZE_WIDE = "85px";
 const Home = () => {
   const breakpoint = useMediaQuery("(min-width:600px)");
   const backgroundBreak = useMediaQuery("(min-width:1280px)");
+
+  const [tabValue, setTabValue] = useState(0);
+
+  const a11yProps = (index) => {
+    return {
+      id: `tab-${index}`,
+    };
+  };
 
   const router = useRouter();
   const onClickRegister = () => {
@@ -117,12 +129,14 @@ const Home = () => {
           fontSize={"1.1rem"}
           marginBottom="3rem"
         >
-          Embark on the adventure of traversing this stunning 50-kilometer
+          Embark on the adventure of traversing a stunning 50 or 35 kilometer
           course, located in the picturesque Toad Mountain just outside the town
           of Nelson. Mark your calendars. Tackle the Toad is making its return
           on the 29th of June, 2024.
         </Typography>
-        <Box sx={{ position: "relative", padding: breakpoint? '0rem' : '1rem' }}>
+        <Box
+          sx={{ position: "relative", padding: breakpoint ? "0rem" : "1rem" }}
+        >
           <Box
             sx={{
               position: "relative",
@@ -166,7 +180,7 @@ const Home = () => {
                 style={{
                   width: breakpoint ? "320px" : "100%",
                   height: breakpoint ? "277px" : "auto",
-                }} // optional
+                }}
               />
               <Box sx={{ pl: "2rem", pt: "1rem", pb: "1rem" }}>
                 <Typography fontSize={"1.2rem"} sx={{ fontWeight: "bold" }}>
@@ -253,20 +267,95 @@ const Home = () => {
           />
         </Box>
       </Box>
-      <Box sx={{ width: "100%",
-        justifyContent: 'center',
-        padding: '1rem',
-        minHeight: '10rem',
-        display: "flex",
-        background: 'rgb(4,30,148)',
-        background: 'linear-gradient(110deg,  rgba(8,142,141,1) 0%, rgba(4,88,148,1) 100%)',
-
-      }}>
-        <Typography
-        fontSize="1.5rem"
-        color="#e8e8e8"
-        sx={{textShadow: '1px 1px rgba(0,0,0,0.2)'}}
-        > More info coming soon </Typography>
+      <Box
+        sx={{
+          width: "100%",
+          justifyContent: "center",
+          display: "flex",
+          flexDirection: "column",
+          px: breakpoint? "4rem" : "0.5rem",
+          alignItems: "center",
+          py: "1rem",
+          minHeight: "10rem",
+          display: "flex",
+          background: "rgb(4,30,148)",
+          backgroundImage: 'url("/mountainBg.jpg")',
+          backgroundSize: "cover",
+          backgroundPositionY: breakpoint? "-100px" : "0px",
+        }}
+      >
+        <Tabs
+          sx={{
+            width: "100%",
+            "& .MuiTabs-indicator": {
+              backgroundColor: "white",
+              height: 2,
+            },
+            "& .MuiTab-root": {
+              color: "white!important",
+              fontWeight: "700",
+              minWidth: "60px",
+              fontSize: breakpoint?  "1rem" : "0.7rem",
+            },
+          }}
+          variant="scrollable"
+          allowScrollButtonsMobile
+          value={tabValue}
+          onChange={(event, newValue) => {
+            setTabValue(newValue);
+          }}
+        >
+          <Tab label="Event Guide" {...a11yProps(0)} />
+          <Tab label="Maps" {...a11yProps(1)} />
+          <Tab label="Aid stations" {...a11yProps(2)} />
+          <Tab label="Rules" {...a11yProps(3)} />
+          <Tab label="Schedule" {...a11yProps(4)} />
+        </Tabs>
+        <CustomTabPanel value={tabValue} index={0}>
+          <Typography>Event Guide coming soon!</Typography>
+        </CustomTabPanel>
+        <CustomTabPanel value={tabValue} index={1}>
+          <Typography>Maps coming soon!</Typography>
+        </CustomTabPanel>
+        <CustomTabPanel value={tabValue} index={2}>
+          <Typography fontSize="1rem" color="black">
+            The <b>50km course will have 6 aid stations</b> and the{" "}
+            <b>35km course will have 3 aid stations</b>.<br />
+            <b>This is a cup free event.</b> We will have NO cups at any Aid
+            Stations. <br />
+            Please travel with your own foldable, re-usable cup or bottle.{" "}
+            <br /> <br />
+          </Typography>
+          <Typography fontSize="1rem" color="black">
+            <b>Each of the aid stations will be equiped with: </b>
+            <ul style={{ listStylePosition: "inside" }}>
+              <li>Fruit: Watermelon, Oranges and Bananas</li>
+              <li>Chips: Plain, Salt and Vinegar</li>
+              <li>Sweet Treats: Gummies and Twizzlers</li>
+              <li>
+                Gels: Limited variety of Gels – please don’t depend on our
+                stock, travel with your own race food!
+              </li>
+              <li>Boiled & Salted Potatoes</li>
+              <li>Pickles</li>
+              <li>Water</li>
+              <li>Gatorade</li>
+              <li>Coke</li>
+              <li>Ice + small ziploc bags</li>
+              <li>
+                We will also have feminine hygiene products at both TA’s and the
+                Start + Finish Lines - please ask the Medic on duty
+              </li>
+              <li>Sunscreen</li>
+            </ul>
+          </Typography>
+        </CustomTabPanel>
+        <CustomTabPanel value={tabValue} index={3}>
+          <Typography>Rules coming soon!</Typography>
+        </CustomTabPanel>
+        <CustomTabPanel value={tabValue} index={4}>
+          <Typography>Schedule coming soon!</Typography>
+        </CustomTabPanel>
       </Box>
     </>
   );
