@@ -14,7 +14,7 @@ const CustomTabPanel = (props) => {
       {value === index && (
         <Box sx={{ p: 3 }}>
           <Card
-            elevation="10"
+            elevation={10}
             sx={{
               padding: "2rem",
               boxShadow: "0 0 10px 1px rgba(0, 0, 0, 0.25)",

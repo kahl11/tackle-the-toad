@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import dynamic from 'next/dynamic'
+
 import CustomTabPanel from "@/src/components/customTabPanel";
 import {
   Box,
@@ -13,6 +15,9 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
+const EmbededMap = dynamic(() => import('../src/components/EmbededMap'), { ssr: false })
+
 
 const SPONSOR_LOGO_SIZE = "120px";
 const SPONSOR_LOGO_SIZE_WIDE = "85px";
@@ -133,56 +138,24 @@ const Home = () => {
           course, located in the picturesque Toad Mountain just outside the town
           of Nelson. Mark your calendars. Tackle the Toad is making its return
           on the 29th of June, 2024.
-        </Typography>
-        <Box
-          sx={{ position: "relative", padding: breakpoint ? "0rem" : "1rem" }}
-        >
-          <Box
-            sx={{
-              position: "relative",
-              display: breakpoint ? "block" : "none",
-              height: "15rem",
-              width: "100vw",
-              transform: "translateY(-50%)",
-              top: "calc(277px / 2)",
-              mb: "-15rem",
-              backgroundColor: "#097a69",
-              background:
-                "linear-gradient(141deg, rgba(9,122,120,1) 0%, rgba(9,122,105,1) 100%)",
-            }}
-          />
+        </Typography> 
           <Card
             sx={{
-              maxWidth: breakpoint ? "calc(100vw - 16rem)" : "100%",
-              ml: breakpoint ? "8rem" : "0rem",
-              position: "relative",
-              cursor: "pointer",
-              backgroundColor: "#faf9f7",
+              width: breakpoint ? "80%" : "95%",
+              backgroundColor: "white",
               zIndex: 10,
-            }}
-            onClick={() => {
-              router.push("https://www.strava.com/routes/3140338039930829832");
             }}
           >
             <Box
               display="flex"
               sx={{
                 flexDirection: "row",
-                flexWrap: breakpoint ? "nowrap" : "wrap",
+                flexWrap: "wrap",
+                marginBottom: '-5px' //this is hack for the weird iframe fatmaps embeds
               }}
             >
-              <Image
-                src={"/map.png"}
-                alt="route"
-                sizes="100vw"
-                width={0}
-                height={0}
-                style={{
-                  width: breakpoint ? "320px" : "100%",
-                  height: breakpoint ? "277px" : "auto",
-                }}
-              />
-              <Box sx={{ pl: "2rem", pt: "1rem", pb: "1rem" }}>
+              <EmbededMap/>
+              {/* <Box sx={{ pl: "2rem", pt: "1rem", pb: "1rem" }}>
                 <Typography fontSize={"1.2rem"} sx={{ fontWeight: "bold" }}>
                   The Route
                 </Typography>
@@ -199,10 +172,9 @@ const Home = () => {
                   will also send out an email to anyone who has registered, once
                   the route is finialized.
                 </Typography>
-              </Box>
+              </Box> */}
             </Box>
           </Card>
-        </Box>
         <Box
           sx={{
             mt: "3rem",
@@ -363,5 +335,4 @@ const Home = () => {
 
 Home.propTypes = {};
 
-Home.defaultProps = {};
 export default Home;
