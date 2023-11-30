@@ -134,7 +134,7 @@ const Home = () => {
           fontSize={"1.1rem"}
           marginBottom="3rem"
         >
-          Embark on the adventure of traversing a stunning 50 or 35 kilometer
+          Embark on the adventure of traversing a stunning 50 or 20 kilometer
           course, located in the picturesque Toad Mountain just outside the town
           of Nelson. Mark your calendars. Tackle the Toad is making its return
           on the 29th of June, 2024.
@@ -292,7 +292,7 @@ const Home = () => {
         <CustomTabPanel value={tabValue} index={2}>
           <Typography fontSize="1rem" color="black">
             The <b>50km course will have 6 aid stations</b> and the{" "}
-            <b>35km course will have 3 aid stations</b>.<br />
+            <b>20km course will have 3 aid stations</b>.<br />
             <b>This is a cup free event.</b> We will have NO cups at any Aid
             Stations. <br />
             Please travel with your own foldable, re-usable cup or bottle.{" "}
