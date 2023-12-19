@@ -49,6 +49,7 @@ const EmbededMap = () => {
         data-type="adventure"
         height="480"
         data-id="3543093"
+        data-units="metric"
       ></div>
     </Box>
   );
