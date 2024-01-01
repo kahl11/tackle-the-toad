@@ -13,11 +13,10 @@ import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-const PAGES = ["Home", "Register", "Volunteer", "Maps", "Contact"];
+const PAGES = ["Home", "Register", "Volunteer", "Contact"];
 const LINKS = {
   Home: "",
   Register: "registration",
-  Maps: "maps",
   Volunteer: 'volunteer-registration',
   Contact: "contact",
 };

@@ -278,18 +278,14 @@ const Home = () => {
           }}
         >
           <Tab label="Event Guide" {...a11yProps(0)} />
-          <Tab label="Maps" {...a11yProps(1)} />
-          <Tab label="Aid stations" {...a11yProps(2)} />
-          <Tab label="Rules" {...a11yProps(3)} />
-          <Tab label="Schedule" {...a11yProps(4)} />
+          <Tab label="Aid stations" {...a11yProps(1)} />
+          <Tab label="Rules" {...a11yProps(2)} />
+          <Tab label="Schedule" {...a11yProps(3)} />
         </Tabs>
         <CustomTabPanel value={tabValue} index={0}>
           <Typography>Event Guide coming soon!</Typography>
         </CustomTabPanel>
         <CustomTabPanel value={tabValue} index={1}>
-          <Typography>Maps coming soon!</Typography>
-        </CustomTabPanel>
-        <CustomTabPanel value={tabValue} index={2}>
           <Typography fontSize="1rem" color="black">
             The <b>50km course will have 6 aid stations</b> and the{" "}
             <b>20km course will have 3 aid stations</b>.<br />
@@ -322,10 +318,10 @@ const Home = () => {
             </ul>
           </Typography>
         </CustomTabPanel>
-        <CustomTabPanel value={tabValue} index={3}>
+        <CustomTabPanel value={tabValue} index={2}>
           <Typography>Rules coming soon!</Typography>
         </CustomTabPanel>
-        <CustomTabPanel value={tabValue} index={4}>
+        <CustomTabPanel value={tabValue} index={3}>
           <Typography>Schedule coming soon!</Typography>
         </CustomTabPanel>
       </Box>

@@ -22,6 +22,9 @@ import { handleRegistration } from "../../src/helpers/registrationHelpers";
 import { GlobalContext } from "@/src/components/GlobalContextProvider";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import RegistrationClosed from "@/src/components/registrationClosed";
+
+const REGISTRATION_CLOSED = true;
 
 const Registration = () => {
   const [birthday, setBirthday] = useState(null);
@@ -29,6 +32,9 @@ const Registration = () => {
   const breakpoint = useMediaQuery("(min-width:600px)");
   const router = useRouter();
   const [tShirtSize, setTShirtSize] = useState('');
+  if(REGISTRATION_CLOSED){
+    return (<RegistrationClosed />);
+  }
   return (
     <Box sx={{ padding: breakpoint ? "0rem" : "1rem" }}>
       <form

@@ -55,7 +55,6 @@ const VolunteerRegistration = () => {
             handleVolunteerRegistration(
               event.target,
               birthday,
-              tShirtSize,
               router
             );
           }
@@ -81,6 +80,7 @@ const VolunteerRegistration = () => {
             label="Last Name"
             variant="filled"
           />
+           {/*
           <Typography sx={{ paddingBottom: "0.5rem" }}>Shirt Size</Typography>
           <Select
             id="shirt-size"
@@ -93,13 +93,13 @@ const VolunteerRegistration = () => {
             <MenuItem value={"m"}>m</MenuItem>
             <MenuItem value={"l"}>l</MenuItem>
             <MenuItem value={"xl"}>xl</MenuItem>
-          </Select>
+          </Select> */}
           <Typography required sx={{ paddingBottom: "1rem" }}>
             Contact
           </Typography>
           <TextField id="email" label="Email" variant="filled" />
           <TextField id="verifyEmail" label="Verify Email" variant="filled" />
-          <TextField id="phone" label="Phone Number" variant="filled" />
+          {/* <TextField id="phone" label="Phone Number" variant="filled" /> */}
           <Button
             variant="contained"
             type="submit"

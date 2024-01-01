@@ -105,7 +105,7 @@ export const handleRegistration = async (target, birthday, shirtSize, router) =>
     }
 }
 
-export const handleVolunteerRegistration = async (target, birthday, shirtSize, router) => {
+export const handleVolunteerRegistration = async (target, birthday, router) => {
     let nodesToDelete = document.querySelectorAll('[is-error-node]');
     let validForm = true;
     nodesToDelete.forEach((ele) => {
@@ -114,9 +114,9 @@ export const handleVolunteerRegistration = async (target, birthday, shirtSize, r
     for (let i = 0; i < target.length; i++) {
         target[i].style.color = 'rgba(0, 0, 0, 0.87)';
     }
-    if (!birthday) {
-        validForm = false;
-    }
+    // if (!birthday) {
+    //     validForm = false;
+    // }
     const email = target.querySelector("#email").value;
     if (!validateEmail(email)) {
         target.querySelector("#email").style.color = 'red';
@@ -128,22 +128,21 @@ export const handleVolunteerRegistration = async (target, birthday, shirtSize, r
         insertErrorText(target.querySelector("#verifyEmail"), "emails must match");
         validForm = false;
     }
-    const phone = target.querySelector("#phone").value;
-    if(!validatePhone(phone)){
-        target.querySelector("#phone").style.color = 'red';
-        insertErrorText(target.querySelector("#phone"), "invalid phone number");
-        validForm = false;
-    }
+    // const phone = target.querySelector("#phone").value;
+    // if(!validatePhone(phone)){
+    //     target.querySelector("#phone").style.color = 'red';
+    //     insertErrorText(target.querySelector("#phone"), "invalid phone number");
+    //     validForm = false;
+    // }
     if(!validForm){
         return;
     }
 
     const payload = {
-        "shirtSize": shirtSize,
         "email": target.querySelector("#email").value,
         "firstName": target.querySelector("#firstName").value,
         "lastName": target.querySelector("#lastName").value,
-        "phone": target.querySelector("#phone").value,
+        // "phone": target.querySelector("#phone").value,
     }
     try {
         await setDoc(doc(db, "volunteers", email), payload);
