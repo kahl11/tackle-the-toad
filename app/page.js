@@ -25,6 +25,7 @@ const SPONSOR_LOGO_SIZE_WIDE = "85px";
 const Home = () => {
   const breakpoint = useMediaQuery("(min-width:600px)");
   const backgroundBreak = useMediaQuery("(min-width:1280px)");
+  const [mapShowing, setMapShowing] = useState('50KM');
 
   const [tabValue, setTabValue] = useState(0);
 
@@ -138,24 +139,81 @@ const Home = () => {
           course, located in the picturesque Toad Mountain just outside the town
           of Nelson. Mark your calendars. Tackle the Toad is making its return
           on the 29th of June, 2024.
-        </Typography> 
-          <Card
+        </Typography>
+        <Box display={"flex"} flexDirection={"row"}>
+          <Button
+            variant="contained"
+            size="large"
             sx={{
-              width: breakpoint ? "80%" : "95%",
-              backgroundColor: "white",
-              zIndex: 10,
+              background: mapShowing === "50KM" ?
+              "linear-gradient(30deg, rgba(79,186,210,0.8) 0%, rgba(45,221,222,0.8) 100%)" :
+              "linear-gradient(141deg, rgba(38,159,186,1) 0%, rgba(9,175,176,1) 100%)",
+              marginBottom: "1rem",
+              marginRight: "1rem",
+              boxShadow: "2px 2px 14px rgba(0,0,0,0.2)",
+              "&:hover": { background: mapShowing === "50KM" ?
+              "linear-gradient(30deg, rgba(79,186,210,0.8) 0%, rgba(45,221,222,0.8) 100%)" :
+              "linear-gradient(141deg, rgba(38,159,186,1) 0%, rgba(9,175,176,1) 100%)" },
+            }}
+            onClick={() => setMapShowing("50KM")}
+            mb={"1rem"}
+            mr={"1rem"}>
+            <Typography
+              fontSize={"1rem"}
+              color="white"
+              sx={{ cursor: "pointer" }}
+              fontWeight="500"
+            >50km Map
+            </Typography>
+          </Button>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              background: mapShowing === "20KM" ?
+              "linear-gradient(30deg, rgba(79,186,210,0.8) 0%, rgba(45,221,222,0.8) 100%)" :
+              "linear-gradient(141deg, rgba(38,159,186,1) 0%, rgba(9,175,176,1) 100%)",
+              marginBottom: "1rem",
+              marginLeft: "1rem",
+              boxShadow: "2px 2px 14px rgba(0,0,0,0.2)",
+              "&:hover": { background: mapShowing === "20KM" ?
+              "linear-gradient(30deg, rgba(79,186,210,0.8) 0%, rgba(45,221,222,0.8) 100%)":
+              "linear-gradient(141deg, rgba(38,159,186,1) 0%, rgba(9,175,176,1) 100%)" },
+            }}
+            onClick={() => setMapShowing("20KM")}
+            mb={"1rem"}
+            mr={"1rem"}>
+            <Typography
+              fontSize={"1rem"}
+              color="white"
+              sx={{ cursor: "pointer" }}
+              fontWeight="500"
+            >20km Map
+            </Typography>
+          </Button>
+        </Box>
+        <Card
+          sx={{
+            width: breakpoint ? "80%" : "95%",
+            backgroundColor: "white",
+            zIndex: 10,
+          }}
+        >
+          <Box
+            display="block"
+            sx={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              marginBottom: '-5px' //this is hack for the weird iframe fatmaps embeds
             }}
           >
-            <Box
-              display="flex"
-              sx={{
-                flexDirection: "row",
-                flexWrap: "wrap",
-                marginBottom: '-5px' //this is hack for the weird iframe fatmaps embeds
-              }}
-            >
-              <EmbededMap/>
-              {/* <Box sx={{ pl: "2rem", pt: "1rem", pb: "1rem" }}>
+            <Box display="block" sx={{ display: mapShowing === "50KM" ? "clear" : "none" }}>
+              <EmbededMap mapId={"50KM"} />
+            </Box>
+            <Box display="block" sx={{ display: mapShowing === "20KM" ? "clear" : "none" }}>
+              <EmbededMap mapId={"20KM"} />
+            </Box>
+            {/* <Box sx={{ pl: "2rem", pt: "1rem", pb: "1rem" }}>
                 <Typography fontSize={"1.2rem"} sx={{ fontWeight: "bold" }}>
                   The Route
                 </Typography>
@@ -173,8 +231,8 @@ const Home = () => {
                   the route is finialized.
                 </Typography>
               </Box> */}
-            </Box>
-          </Card>
+          </Box>
+        </Card>
         <Box
           sx={{
             mt: "3rem",
@@ -245,7 +303,7 @@ const Home = () => {
           justifyContent: "center",
           display: "flex",
           flexDirection: "column",
-          px: breakpoint? "4rem" : "0.5rem",
+          px: breakpoint ? "4rem" : "0.5rem",
           alignItems: "center",
           py: "1rem",
           minHeight: "10rem",
@@ -253,7 +311,7 @@ const Home = () => {
           background: "rgb(4,30,148)",
           backgroundImage: 'url("/mountainBg.jpg")',
           backgroundSize: "cover",
-          backgroundPositionY: breakpoint? "-100px" : "0px",
+          backgroundPositionY: breakpoint ? "-100px" : "0px",
         }}
       >
         <Tabs
@@ -267,7 +325,7 @@ const Home = () => {
               color: "white!important",
               fontWeight: "700",
               minWidth: "60px",
-              fontSize: breakpoint?  "1rem" : "0.7rem",
+              fontSize: breakpoint ? "1rem" : "0.7rem",
             },
           }}
           variant="scrollable"

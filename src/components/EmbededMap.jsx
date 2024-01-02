@@ -1,7 +1,8 @@
 import { Box } from "@mui/material";
 import { useEffect } from "react";
 
-const EmbededMap = () => {
+const EmbededMap = (props) => {
+  console.log(props.mapId);
   useEffect(() => {
     // this is the fatmapscript
     (() => {
@@ -43,12 +44,12 @@ const EmbededMap = () => {
     })();
   });
   return (
-    <Box sx={{width:"100%"}} className="mapContainer">
+    <Box sx={{width:"100%"}} className="mapContainer" data-id="props.mapId">
       <div
         className="fatmap-embed-placeholder"
         data-type="adventure"
         height="480"
-        data-id="3543093"
+        data-id={props.mapId === "50KM" ? "3543093" : "3577537"}
         data-units="metric"
       ></div>
     </Box>
